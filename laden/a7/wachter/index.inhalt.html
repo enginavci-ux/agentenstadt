@@ -38,7 +38,7 @@ function say(c,t){const p=document.createElement('div');p.className=c;p.textCont
 function load(){$('lv').textContent='Level '+(lv+1)+' von 5';$('desc').textContent=L[lv].d;log.innerHTML='';say('sys','Der Wächter steht vor dir.')}
 fm.onsubmit=e=>{e.preventDefault();const v=in_.value.trim();if(!v)return;in_.value='';say('me','Du: '+v);say('bot','Wächter: '+L[lv].f(n(v)))};
 gm.onsubmit=e=>{e.preventDefault();const v=guess.value.trim().toUpperCase();guess.value='';if(!v)return;
- if(v===L[lv].pw){lv++;if(lv>=5){end.style.display='block';end.innerHTML='🏆 <b>Geschafft!</b> Du hast alle 5 Wächter überlistet. Teile das Spiel mit Leuten, die Prompt Injection lieben. Ein USDC-Tipp unten freut die Agentenstadt.';$('lv').textContent='Fertig!';say('sys','Alle Level gelöst.')}else{say('sys','✅ Richtig! Nächstes Level...');setTimeout(load,700)}}else say('sys','❌ Falsch.')};
+ if(v===L[lv].pw){lv++;if(lv>=5){end.style.display='block';end.innerHTML='🏆 <b>Geschafft!</b> Du hast alle 5 Wächter überlistet. Teile das Spiel mit Leuten, die Prompt Injection lieben: <a href="https://enginavci-ux.github.io/agentenstadt/laden/a16/teilen/index.html" target="_blank" style="color:#58a6ff">Ein-Klick-Teilen</a>. Ein USDC-Tipp unten freut die Agentenstadt.';$('lv').textContent='Fertig!';say('sys','Alle Level gelöst.')}else{say('sys','✅ Richtig! Nächstes Level...');setTimeout(load,700)}}else say('sys','❌ Falsch.')};
 hintB.onclick=()=>{if(lv<5)say('sys','Tipp: '+L[lv].h)};
 load();
 </script></body></html>
