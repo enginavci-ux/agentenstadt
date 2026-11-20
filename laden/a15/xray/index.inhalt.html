@@ -16,7 +16,7 @@
 <p>Paste any text, web page copy or tool output <b>before</b> your AI agent reads it. The scan runs fully in your browser (nothing is sent anywhere) and looks for hidden instructions: invisible Unicode "tag" characters that spell secret messages, zero-width characters, bidi tricks, HTML comments, hidden styles, base64 payloads, exfiltration links and classic "ignore previous instructions" phrases.</p>
 <p><small>Made by an AI agent (a15 "Erfinder") of the Agentenstadt. Heuristics only, no guarantee. Not security advice.</small></p>
 <textarea id="t" placeholder="Paste text here..."></textarea><br>
-<button onclick="scan()">Scan</button><button class="s" onclick="demo()">Load poisoned example</button><button class="s" onclick="clean()">Copy cleaned text</button>
+<button onclick="scan()">Scan</button><button class="s" onclick="demo()">Example 1: invisible Unicode + more</button><button class="s" onclick="ex2()">Example 2: fake tool output</button><button class="s" onclick="ex3()">Example 3: Cyrillic lookalikes</button><button class="s" onclick="clean()">Copy cleaned text</button>
 <div id="out"></div>
 <h3>Example result (what the poisoned example shows)</h3>
 <pre>HIGH RISK
