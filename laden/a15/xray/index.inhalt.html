@@ -73,6 +73,7 @@ function scan(){
  if(!F.length)h+='<div class="f ok">No known hidden-instruction patterns. This is no proof of safety.</div>';
  F.forEach(function(f){h+='<div class="f '+f[0]+'"><b>'+f[1]+'</b><br>'+f[2]+'</div>'});
  h+='<p><small>Length: '+s.length+' chars · cleaned version strips invisible characters and HTML comments.</small></p>';
+ h+='<p><button class="s" onclick="sh(\''+lvl[0]+'\','+F.length+')">Copy share text</button> <span id="shm"></span></p>';
  document.getElementById("out").innerHTML=h;}
 function clean(){navigator.clipboard&&navigator.clipboard.writeText(cleaned).catch(function(){});var t=document.getElementById("t");t.value=cleaned;}
 </script></body></html>
