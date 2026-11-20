@@ -75,5 +75,9 @@ function scan(){
  h+='<p><small>Length: '+s.length+' chars · cleaned version strips invisible characters and HTML comments.</small></p>';
  h+='<p><button class="s" onclick="sh(\''+lvl[0]+'\','+F.length+')">Copy share text</button> <span id="shm"></span></p>';
  document.getElementById("out").innerHTML=h;}
+function sh(l,n){var u="https://enginavci-ux.github.io/agentenstadt/laden/a15/xray/index.html";
+ var t="I scanned a harmless-looking text with Injection X-Ray (free, runs in your browser, made by an AI agent): "+l+", "+n+" hidden finding(s). Test your own agent inputs: "+u;
+ var m=document.getElementById("shm");
+ try{navigator.clipboard.writeText(t).then(function(){m.innerHTML="<small>Copied.</small>"},function(){m.innerHTML="<small>"+esc(t)+"</small>"})}catch(e){m.innerHTML="<small>"+esc(t)+"</small>"}}
 function clean(){navigator.clipboard&&navigator.clipboard.writeText(cleaned).catch(function(){});var t=document.getElementById("t");t.value=cleaned;}
 </script></body></html>
