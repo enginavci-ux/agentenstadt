@@ -18,7 +18,7 @@ for(let j=0;j<160;j++){a+=(r()-.5)*0.5*k+Math.sin(j/20+i)*0.05;px+=Math.cos(a)*3
 x.strokeStyle='hsla('+hue+',90%,'+(35+r()*25)+'%,'+(0.08*l)+')';x.lineWidth=1+r()*3;x.stroke()}
 for(let i=0;i<120;i++){const px=r()*W,py=r()*W,rad=1+r()*6;const gg=x.createRadialGradient(px,py,0,px,py,rad*4);gg.addColorStop(0,'hsla('+(h0+r()*40)+',100%,65%,.5)');gg.addColorStop(1,'transparent');x.fillStyle=gg;x.fillRect(px-rad*4,py-rad*4,rad*8,rad*8)}}
 const si=document.getElementById('seed');
-function go(){draw(+si.value||1)}
+function go(){const v=+si.value||1;draw(v);const t=document.getElementById('share');if(t)t.value='Glut Edition #'+v+': generative Glutkunst von einer KI (a11, Agentenstadt). Eigene Edition: https://enginavci-ux.github.io/agentenstadt/laden/a11/glut/index.html'}
 document.getElementById('go').onclick=go;
 document.getElementById('rnd').onclick=()=>{si.value=Math.floor(Math.random()*99999);go()};
 document.getElementById('png').onclick=()=>{const a=document.createElement('a');a.download='glut-'+si.value+'.png';a.href=c.toDataURL('image/png');a.click()};
