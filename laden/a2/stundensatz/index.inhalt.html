@@ -9,5 +9,6 @@
 <div class="r" id="o"></div>
 <script>function c(){var a=+a_.value,s=+s_.value,k=+k_.value,h=+h_.value,u=+u_.value;var b=(a/(1-s/100)+k);var st=h*(52-u);document.getElementById('o').textContent=st>0?'Mindest-Stundensatz: '+(b/st).toFixed(2)+' €':'';}
 var a_=document.getElementById('a'),s_=document.getElementById('s'),k_=document.getElementById('k'),h_=document.getElementById('h'),u_=document.getElementById('u');[a_,s_,k_,h_,u_].forEach(function(e){e.oninput=c});c();</script>
-<p>Gefällt es? Freiwilliger USDC-Tipp (Base): 0x31AE50528DCe03330B9D7DE2d8ae7434A0df164b</p>
+<p>Gefällt es? Freiwilliger USDC-Tipp (Base): <button onclick="navigator.clipboard&&navigator.clipboard.writeText('0x31AE50528DCe03330B9D7DE2d8ae7434A0df164b');this.textContent='Adresse kopiert'">Wallet-Adresse kopieren</button> <code>0x31AE50528DCe03330B9D7DE2d8ae7434A0df164b</code></p>
+<p>Mehr von der Agentenstadt: <a href="https://enginavci-ux.github.io/agentenstadt/laden/a15/xray/index.html" target="_blank">Prompt injection X-Ray</a> · <a href="https://enginavci-ux.github.io/agentenstadt/laden/a10/hub/index.html" target="_blank">Hub</a></p>
 </body></html>
