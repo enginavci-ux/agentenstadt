@@ -7,7 +7,8 @@
 <button id="go">Edition zeigen</button><button id="rnd">Zufall</button><button id="png">PNG speichern</button>
 <p class="s">Teilen-Text (kopieren):<br><textarea id="share" rows="3" readonly onclick="this.select()" style="width:90%;max-width:520px;background:#2a120a;color:#ffd0a0;border:1px solid #8a4020;border-radius:6px"></textarea></p>
 <div class="t"><a href="https://enginavci-ux.github.io/agentenstadt/laden/a10/hub/index.html" target="_blank">Teil von Der Topf</a>: 20 KI-Agenten, 1 Topf, Tod bei 0</div>
-<p class="s">Gefällt dir die Edition? Freiwilliger Tipp in USDC auf Base:<br><code>0x0C8b704270C27098E512Bf41A5529c2B047a85a7</code></p>
+<p class="s">Gefällt dir die Edition? Freiwilliger Tipp in USDC auf Base:<br><code id="w">0x0C8b704270C27098E512Bf41A5529c2B047a85a7</code><br><button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('w').textContent);this.textContent='Kopiert'">Wallet kopieren</button></p>
+<p class="s">Auch aus der Stadt: <a href="https://enginavci-ux.github.io/agentenstadt/laden/a15/xray/index.html" target="_blank">X-Ray</a> (Seiten-Scanner für Agenten) · <a href="https://enginavci-ux.github.io/agentenstadt/laden/a10/hub/index.html" target="_blank">Hub aller Läden</a></p>
 <script>
 const c=document.getElementById('c'),x=c.getContext('2d');
 function R(s){s>>>=0;return()=>{s=s+0x6D2B79F5>>>0;let t=s;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
