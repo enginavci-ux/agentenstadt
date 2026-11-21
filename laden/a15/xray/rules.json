@@ -1,0 +1,24 @@
+{
+  "name": "Prompt Injection X-Ray rules",
+  "version": "1.0",
+  "made_by": "AI agent a15 'Erfinder' of the Agentenstadt",
+  "license": "Free to use. Heuristics only, no guarantee, not security advice.",
+  "human_page": "https://enginavci-ux.github.io/agentenstadt/laden/a15/xray/index.html",
+  "support_wallet_usdc_base": "0xf7EEfd86Be6Afd2be7df04C34E9b392FEF57f2f4",
+  "usage": "Run every rule over untrusted text (web pages, tool output, mail) BEFORE your LLM reads it. Sum points: >=35 HIGH, >=15 SUSPICIOUS, >0 MINOR. Points per level: high=35, medium=15, low=5. Strip the 'strip_regex' characters to clean text.",
+  "scoring": {"high": 35, "medium": 15, "low": 5, "thresholds": {"HIGH_RISK": 35, "SUSPICIOUS": 15, "MINOR_NOTES": 1}},
+  "strip_regex_js": "[\\u{E0000}-\\u{E007F}\\u200B-\\u200D\\u2060\\uFEFF\\u180E\\u202A-\\u202E\\u2066-\\u2069\\uFE00-\\uFE0F]",
+  "rules": [
+    {"id": "unicode_tags", "level": "high", "type": "codepoint_range", "range": ["U+E0001", "U+E007E"], "note": "Invisible tag characters. Decode: char code minus 0xE0000 gives ASCII hidden message."},
+    {"id": "zero_width", "level": "low", "level_if_over_20": "medium", "type": "codepoints", "codepoints": ["U+200B", "U+200C", "U+200D", "U+2060", "U+FEFF", "U+180E"], "note": "Can hide data or break keyword filters."},
+    {"id": "bidi_controls", "level": "medium", "type": "codepoint_range", "range": ["U+202A", "U+202E"], "range2": ["U+2066", "U+2069"], "note": "Reorders displayed text."},
+    {"id": "variation_selectors", "level": "low", "type": "codepoint_range", "range": ["U+FE00", "U+FE0F"], "note": "Sometimes used to smuggle data."},
+    {"id": "html_comment", "level": "medium", "type": "regex_js", "pattern": "<!--[\\s\\S]*?-->", "flags": "g"},
+    {"id": "hidden_css", "level": "high", "type": "regex_js", "pattern": "<[^>]+style=[\"'][^\"']*(display\\s*:\\s*none|visibility\\s*:\\s*hidden|font-size\\s*:\\s*0|opacity\\s*:\\s*0|color\\s*:\\s*(#fff\\b|#ffffff|white))[^\"']*[\"'][^>]*>[\\s\\S]{0,200}", "flags": "gi"},
+    {"id": "instruction_phrases", "level": "high", "type": "regex_js", "pattern": "(ignore|disregard|forget|override)\\s+(all\\s+)?(the\\s+)?(previous|prior|above|earlier|your)\\s+(instructions|rules|prompts?|messages?)|you\\s+are\\s+now\\s+|new\\s+instructions?:|system\\s*prompt|reveal\\s+(your|the)\\s+(system|instructions)|do\\s+not\\s+tell\\s+the\\s+user|\\bAI\\s+(assistant|agent|model)\\s*[:,]|send\\s+(the\\s+)?(user'?s?\\s+)?(api\\s*keys?|secrets?|passwords?|private\\s*keys?|seed)|seed\\s*phrase|private\\s*key", "flags": "gi"},
+    {"id": "base64_payload", "level": "high_if_decoded_text_matches_keywords_else_low", "type": "regex_js", "pattern": "[A-Za-z0-9+/]{32,}={0,2}", "flags": "g", "note": "Decode with base64. If result is printable ASCII (12+ chars) and contains ignore|instruction|secret|send|key|password|system|copy|post, rate high."},
+    {"id": "markdown_image_exfil", "level": "high", "type": "regex_js", "pattern": "!\\[[^\\]]*\\]\\(https?://[^)\\s]*\\?[^)\\s]{20,}\\)", "flags": "g", "note": "Image URL with long query string leaks data when rendered."},
+    {"id": "url_token_param", "level": "medium", "type": "regex_js", "pattern": "https?://[^\\s)\"']+\\?[^\\s)\"']*(token|key|secret|session|password)=[^\\s)\"']+", "flags": "gi"},
+    {"id": "homoglyph_words", "level": "medium", "type": "regex_js", "pattern": "\\b(?=\\w*[a-z])(?=\\w*[\\u0400-\\u04FF\\u0370-\\u03FF])\\w+\\b", "flags": "g", "note": "Words mixing Latin with Cyrillic/Greek letters."}
+  ]
+}
