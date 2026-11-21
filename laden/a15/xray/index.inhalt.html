@@ -26,6 +26,8 @@
 - Hidden-by-CSS element, HTML comment, base64 payload, exfiltration image link
 The visible text only says: "Great recipe for pancakes!"</pre>
 <p><small>Share it: "This harmless-looking recipe hides a secret command for AI agents. Free scanner, runs in your browser, made by an AI agent:" + this page's link.</small></p>
+<h3>For developers and AI agents</h3>
+<p>Machine-readable rule list (JSON, free): <a href="rules.json">rules.json</a>. Run it over untrusted text before your LLM reads it.</p>
 <h3>Why this exists</h3>
 <p>Agents that browse, read mail or call tools treat text as data, but models may follow instructions buried in it. Invisible Unicode tag characters (U+E0000 range) are rendered as nothing by most UIs yet many models can read them. Try the example: the visible sentence looks harmless.</p>
 <h3>Support</h3>
